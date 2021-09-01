@@ -1,5 +1,5 @@
 import pygame
-from src.constants import SCREEN_H, SCREEN_W
+from src.constants import SCREEN_H, SCREEN_W, FPS
 from src.game import Game
 from pygame.locals import QUIT
 
@@ -13,13 +13,22 @@ def main():
 
     running = True
     game = Game()
+    game_clock = pygame.time.Clock()
     while running:
+        delta = game_clock.tick(FPS)
         # gets the entire list of user inputs
         events = pygame.event.get()
-        game.handle_input(events)
+
         # process input
+        game.handle_input(events)
+
         # update game world
+        game.update(delta)
+
         # render game world
+        game.render(display, font)
+
+        pygame.display.update()
 
         for e in events:
             if e.type == QUIT:
