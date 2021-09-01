@@ -17,7 +17,7 @@ class Game:
                 if event.key == K_RIGHT:
                     print("Move right")
                 if event.key == K_SPACE:
-                    print("Shoot bullet!")
+                    print("pew")
             if event.type == KEYUP:
                 if event.key == K_LEFT:
                     print("Stop moving left")
