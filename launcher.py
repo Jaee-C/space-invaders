@@ -1,5 +1,6 @@
 import pygame
 from src.constants import SCREEN_H, SCREEN_W
+from src.game import Game
 from pygame.locals import QUIT
 
 def main():
@@ -11,9 +12,11 @@ def main():
     font = pygame.font.SysFont("Arial", 24)
 
     running = True
+    game = Game()
     while running:
         # gets the entire list of user inputs
         events = pygame.event.get()
+        game.handle_input(events)
         # process input
         # update game world
         # render game world
