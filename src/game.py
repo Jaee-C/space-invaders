@@ -17,22 +17,25 @@ class Game:
         for event in events:
             if event.type == KEYDOWN:
                 if event.key == K_LEFT:
-                    print("Move left")
+                    self.player.move_left()
                 if event.key == K_RIGHT:
-                    print("Move right")
+                    self.player.move_right()
                 if event.key == K_SPACE:
                     print("pew")
             if event.type == KEYUP:
-                if event.key == K_LEFT:
-                    print("Stop moving left")
-                if event.key == K_RIGHT:
-                    print("Stop moving right")
+                if event.key == K_LEFT and self.player.move_direction < 0:
+                    self.player.stop_moving()
+                if event.key == K_RIGHT and self.player.move_direction > 0:
+                    self.player.stop_moving()
 
 
     def update(self, delta):
         for i in range(len(self.entities) - 1, -1, -1):
             obj = self.entities[i]
             # Execute entity logic
+            obj.tick(delta, self.entities)
+
+            obj.move(delta)
 
     def render_text(self, display, font, text: str, color: Color, position: Vector2):
         surface = font.render(text, True, color)
