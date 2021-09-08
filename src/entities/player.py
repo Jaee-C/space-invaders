@@ -27,3 +27,6 @@ class Player(Entity):
     def tick(self, delta: int, objects: 'list'):
         # velocity = speed * direction
         self.velocity.x = self.speed * self.move_direction
+
+        if self.health <= 0:
+            self.kill()
