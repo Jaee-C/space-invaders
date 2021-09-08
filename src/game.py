@@ -1,6 +1,7 @@
 from pygame.locals import K_RIGHT, K_SPACE, KEYDOWN, K_LEFT, KEYUP
 from pygame import Color, Vector2
 from src.constants import BLACK, WHITE
+from src.entities.player import Player
 
 class Game:
 
@@ -8,6 +9,9 @@ class Game:
 
     def __init__(self):
         self.entities = []
+        # initialize 'player' entity
+        self.player = Player()
+        self.entities.append(self.player)
 
     def handle_input(self, events):
         for event in events:
@@ -37,4 +41,6 @@ class Game:
     def render(self, display, font):
         display.fill(BLACK)
         # loop through each entity and render it
+        for obj in self.entities:
+            obj.render(display)
         self.render_text(display, font, "Space Invaders", WHITE, (50, 50))
