@@ -3,6 +3,9 @@ from src.constants import SCREEN_H, SCREEN_W, FPS
 from src.game import Game
 from pygame.locals import QUIT
 
+from trainer_util import calculate_inputs
+from time import sleep
+
 def main():
     
     pygame.init()
